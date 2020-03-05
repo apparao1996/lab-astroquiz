@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.User;
 import utility.BasicEligibility;
-import utility.EligibiltyCheck;
+import utility.EligibilityCheck;
+
 
 @WebServlet(urlPatterns= {"/eligible"})
 public class EligibilityViewController extends HttpServlet {
@@ -29,7 +30,8 @@ public class EligibilityViewController extends HttpServlet {
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 
 		String name=request.getParameter("name");
 		String number=request.getParameter("Number");
@@ -37,6 +39,7 @@ public class EligibilityViewController extends HttpServlet {
 		int height=Integer.parseInt(request.getParameter("height"));
 		int weight=Integer.parseInt(request.getParameter("weight"));
 		String country=request.getParameter("country");
+		
 		
 	
 		User user = new User(name,number,age,height,weight,country);
@@ -46,9 +49,13 @@ public class EligibilityViewController extends HttpServlet {
 		user.setHeight(height);
 		user.setWeight(weight);
 		user.setCountry(country);
+	//	String points=request.getParameter("points");
 		// Create an Object for EligibiltyCheck
 		// Call the basicEligibilityCheck method with the object created pass the user argument as the value to method.
 		// Store the return value in a boolean variable called spaceEligible
+		EligibilityCheck  ec=new EligibilityCheck();
+		   boolean spaceEligible=ec.basicEligibilityCheck(user);
+		
 		 
 		
 		System.out.println(spaceEligible);
